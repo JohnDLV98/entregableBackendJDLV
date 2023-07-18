@@ -11,21 +11,17 @@ class ProductManager {
     */
     addProduct(title, description, price, thumbnail, code, stock) {
 
-        if (!(title && description && price && thumbnail && code && stock)){ 
+        if (!(title && description && price && thumbnail && code && stock)) {
             console.error("Incomplete data");
-            return;            
+            return;
         }
-        const foundCode = this.products.find( product => product.code === code);
-        if (!foundCode) {
+        const foundCode = this.products.find(product => product.code === code);
+        if (foundCode) {
             console.warn("Repeated code")
             return;
-        } 
-
-        if (!products.length) {
-            ProductManager.idCounter = 1;
-        } else {
-            ProductManager.idCounter = products[products.length -1] + 1;            
         }
+
+        ProductManager.idCounter++;
 
         const newProduct = {
             id: ProductManager.idCounter,
@@ -36,7 +32,7 @@ class ProductManager {
             code,
             stock
         };
-        
+
         this.products.push(newProduct);
     }
 
@@ -52,15 +48,40 @@ class ProductManager {
         getProductById
     - Debe buscar en el arreglo el producto que coincida con el id
     - En caso de no coincidir ningún id, mostrar en consola un error “Not found”
-    */ 
+    */
     getProductById(idProduct) {
-        const foundId = this.products.find( product => product.id === idProduct);
+        const foundId = this.products.find(product => product.id === idProduct);
         if (!foundId) {
-            console.error("Not found");
-            return;
-        } 
+            return "ERROR, Not found";
+        }
         return foundId;
     }
 }
 
+// Se creará una instancia de la clase “ProductManager”
 const productManager1 = new ProductManager();
+
+// Se llamará “getProducts” recién creada la instancia, debe devolver un arreglo vacío []
+console.log(productManager1.getProducts());
+
+// Se llamará al método “addProduct” con los campos:
+// title: “producto prueba”
+// description:”Este es un producto prueba”
+// price:200,
+// thumbnail:”Sin imagen”
+// code:”abc123”,
+// stock:25
+// El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE
+productManager1.addProduct("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25);
+
+// Se llamará el método “getProducts” nuevamente, esta vez debe aparecer el producto recién agregado
+console.log(productManager1.getProducts());
+
+// Se llamará al método “addProduct” con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
+productManager1.addProduct("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25);
+
+// Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
+console.log(productManager1.getProductById(5));
+
+
+
