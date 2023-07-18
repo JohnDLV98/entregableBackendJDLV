@@ -82,6 +82,7 @@ productManager1.addProduct("producto prueba", "Este es un producto prueba", 200,
 
 // Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
 console.log(productManager1.getProductById(5));
+console.log(productManager1.getProductById(1));
 
 
 
