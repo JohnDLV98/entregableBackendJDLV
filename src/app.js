@@ -15,7 +15,7 @@ app.get('/products', async (req, res) => {
     const limit = req.query.limit;
     console.log(+limit);
     if (!req.query.limit) {
-        return res.send(products)
+        return res.status(200).send(products)
     }
     if (+limit > products.length) {
         return res.status(404).send("Not Enough Products")
