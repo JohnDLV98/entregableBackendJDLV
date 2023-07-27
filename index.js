@@ -1,4 +1,4 @@
-import ProductManager from './src/manager/ProductManager';
+import ProductManager from './src/manager/ProductManager.js';
 
 const manager = new ProductManager('./Products.json')
 
@@ -19,7 +19,7 @@ const productsManager = async () => {
 
         console.log("ADD PRODUCT");
         console.log(await manager.addProduct(newProduct1));
-       
+
 
         console.log("GET PRODUCT BY ID");
         // console.log(await manager.getProductById(1));
@@ -31,8 +31,8 @@ const productsManager = async () => {
             description: "Este es un producto prueba modificado"
         }));
 
-        console.log("DELETE PRODUCT BY ID");
-        console.log(await manager.deleteProduct(4));
+        // console.log("DELETE PRODUCT BY ID");
+        // console.log(await manager.deleteProduct(4));
 
     } catch (error) {
         throw new Error(error);
