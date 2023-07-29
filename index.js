@@ -31,8 +31,8 @@ const productsManager = async () => {
             description: "Este es un producto prueba modificado"
         }));
 
-        // console.log("DELETE PRODUCT BY ID");
-        // console.log(await manager.deleteProduct(4));
+        console.log("DELETE PRODUCT BY ID");
+        console.log(await manager.deleteProduct(4));
 
     } catch (error) {
         throw new Error(error);

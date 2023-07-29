@@ -32,6 +32,7 @@ class ProductManager {
             throw new Error(error)
         }
     }
+
     /* 
         addProduct
     - Validar que no se repita el campo “code” y que todos los campos sean obligatorios
@@ -59,10 +60,7 @@ class ProductManager {
         } catch (error) {
             throw new Error(error);
         }
-        
     }
-
-
 
     /*
         getProductById
@@ -80,11 +78,9 @@ class ProductManager {
                 Product not found from getProductById
                 ------------------------`)
             }
-
         } catch (error) {
             throw new Error(error)
         }
-        
     }
 
     async updateProduct(idProduct, newProperties) {
@@ -92,8 +88,8 @@ class ProductManager {
             const products = await this.getProducts();
             const foundProductById = await this.getProductById(idProduct);
 
-            if (foundProductById) {                
-            
+            if (foundProductById) {
+
                 const productUpdated = { ...foundProductById, ...newProperties };
 
                 const replacedProductList = products.map(product => {
@@ -112,11 +108,9 @@ class ProductManager {
                 return await this.getProductById(idProduct);
             }
 
-
         } catch (error) {
             throw new Error(error)
         }
-
     }
 
     async deleteProduct(idProduct) {
@@ -135,12 +129,11 @@ class ProductManager {
                 ------------------REMOVED-------------
                 `);
                 return foundProductById;
-            } 
+            }
 
         } catch (error) {
             throw new Error(error)
         }
-
     }
 }
 
