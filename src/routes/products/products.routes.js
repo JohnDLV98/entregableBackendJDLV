@@ -2,8 +2,10 @@ import { Router } from 'express';
 import { __dirname } from '../../util/utils.js';
 import ProductManager from '../../manager/ProductManager.js';
 
+
+const manager = new ProductManager(__dirname+ '../../data/Products.json');
 const router = Router();
-const manager = new ProductManager(__dirname, '../../data/Products.json');
+
 
 //Routes /api/products/...
 router.get('/', async (req, res) => {

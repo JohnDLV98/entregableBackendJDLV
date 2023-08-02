@@ -58,13 +58,13 @@ class CartManager {
             else {
                 cart.products[productIndex].quantity++
             }
-            const cartIndex = carts.findIndex(item => item.id === cart.id)
-            carts[cartIndex] = cart
+            // const cartIndex = carts.findIndex(item => item.id === cart.id)
+            // carts[cartIndex] = cart
             const cartString = await JSON.stringify(carts, null, "\t");
             await this.writeFile(cartString);
-            
+
             return cart;
- 
+
 
         } catch (error) {
             throw new Error(error);
