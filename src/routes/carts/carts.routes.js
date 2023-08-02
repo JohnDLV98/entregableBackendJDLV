@@ -14,7 +14,7 @@ router.get('/:cid', async (req, res) => {
     try {
         const getCartId = await managerCarts.getCartById(+req.params.cid);
         if (!getCartId) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: `Bad Request, Cart with id ${req.params.cid} not Found`
             });
         }
@@ -31,16 +31,17 @@ router.get('/:cid', async (req, res) => {
 router.post('/:cid/product/:pid', async (req, res) => {
     try {
         const { cid, pid } = req.params;
-        const product = managerProducts.getProductById(+pid);
-        const cart = managerCarts.getCartById(+cid);
-        if (!product) {
-            res.status(400).json({
-                message: `Bad Request, Product with id ${pid} not Found`
+        const cart = await managerCarts.getCartById(+cid);
+        const product = await managerProducts.getProductById(+pid);
+
+        if (!cart) {
+            return res.status(400).json({
+                message: `Bad Request, Cart with id ${cid} not Found`
             });
         }
-        if (!cart) {
-            res.status(400).json({
-                message: `Bad Request, Cart with id ${cid} not Found`
+        if (!product) {
+            return res.status(400).json({
+                message: `Bad Request, Product with id ${pid} not Found`
             });
         }
 
@@ -57,9 +58,13 @@ router.post('/:cid/product/:pid', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    try {
-        if(req.body){
-            res.status(401).json({
+    try {          
+        
+         const pr = JSON.stringify(req.body)
+         console.log(pr)
+        console.log(pr.length) 
+        if (pr.length > 2) {
+            return res.status(401).json({
                 message: "Error, Unauthorized, it is restricted to enter  attributes",
                 error: "params entered by unauthorized person"
             });

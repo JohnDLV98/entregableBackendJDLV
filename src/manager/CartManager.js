@@ -58,8 +58,8 @@ class CartManager {
             else {
                 cart.products[productIndex].quantity++
             }
-            // const cartIndex = carts.findIndex(item => item.id === cart.id)
-            // carts[cartIndex] = cart
+            const cartIndex = carts.findIndex(item => item.id === cart.id)
+            carts[cartIndex] = cart
             const cartString = await JSON.stringify(carts, null, "\t");
             await this.writeFile(cartString);
 
@@ -77,7 +77,13 @@ class CartManager {
         try {
             const carts = await this.getCarts();
             const foundCart = carts.find(element => element.id === idCart);
-            return foundCart;
+            if (foundCart) {
+                return foundCart;
+            } else {                
+                    console.log(`-----------------------
+                    Product not found from getCartById
+                    ------------------------`)                
+            }            
         } catch (error) {
             throw new Error(error);
         }

@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
             });
         }
         if (+limit > products.length) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: "Bad Request, There isn't enough products"
             });
         }
@@ -39,7 +39,7 @@ router.get('/:pid', async (req, res) => {
     try {
         const product = await manager.getProductById(+req.params.pid);
         if (!product) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: `Bad Request, Product with id ${req.params.pid} not Found`
             });
         }
@@ -56,7 +56,7 @@ router.post('/', async (req, res) => {
     try {
         const product = req.body;
         if (!(product.title && product.description && product.code && product.price && product.stock && product.category) || req.body.id) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: "Error, Bad Request, Check The Data",
                 error: "Wrong Data"
             });
@@ -77,13 +77,13 @@ router.post('/', async (req, res) => {
 router.put('/:pid', async (req, res) => {
 
     if (req.body.id) {
-        res.status(401).json({
+        return res.status(401).json({
             message: "Error, Unauthorized, it is restricted to enter the id attribute",
             error: "id entered by unauthorized person"
         });
     }
     if (!(await manager.getProductById(+req.params.pid))) {
-        res.status(400).json({
+        return res.status(400).json({
             message: `Bad Request, Product with id ${req.params.pid} not Found`
         });
     }
@@ -98,7 +98,7 @@ router.put('/:pid', async (req, res) => {
 
 router.delete('/:pid', async (req,res) => {
     if (!(+req.params.pid)) {
-        res.status(400).json({
+        return res.status(400).json({
             message: `Bad Request, Product with id ${req.params.pid} not Found`
         });
     }
