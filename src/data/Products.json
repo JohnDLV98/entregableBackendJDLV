@@ -1,12 +1,13 @@
 [
 	{
 		"id": 1,
-		"title": "Producto 1",
+		"title": "pruebahamburguesa",
 		"description": "Este es un producto prueba",
 		"price": 200,
 		"thumbnail": "Sin imagen",
 		"code": "abc123",
-		"stock": 25
+		"stock": 25,
+		"category": "comida"
 	},
 	{
 		"id": 2,
@@ -82,11 +83,32 @@
 	},
 	{
 		"id": 10,
-		"title": "Producto Prueba",
+		"title": "Producto 10",
 		"description": "Este es un producto prueba",
-		"price": 200,
+		"price": "200",
 		"thumbnail": "Sin imagen",
 		"code": "abc123",
-		"stock": 25
+		"stock": "25",
+		"category": "comida"
+	},
+	{
+		"id": 11,
+		"title": "Producto 10",
+		"description": "Este es un producto prueba",
+		"price": "200",
+		"thumbnail": "Sin imagen",
+		"code": "abc123",
+		"stock": "25",
+		"category": "comida"
+	},
+	{
+		"id": 12,
+		"title": "Producto 10",
+		"description": "Este es un producto prueba",
+		"price": "200",
+		"thumbnail": "Sin imagen",
+		"code": "abc123",
+		"stock": "25",
+		"category": "comida"
 	}
 ]

@@ -79,11 +79,11 @@ class CartManager {
             const foundCart = carts.find(element => element.id === idCart);
             if (foundCart) {
                 return foundCart;
-            } else {                
-                    console.log(`-----------------------
+            } else {
+                console.log(`-----------------------
                     Product not found from getCartById
-                    ------------------------`)                
-            }            
+                    ------------------------`)
+            }
         } catch (error) {
             throw new Error(error);
         }

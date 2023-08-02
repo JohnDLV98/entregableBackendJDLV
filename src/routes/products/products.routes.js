@@ -3,7 +3,7 @@ import { __dirname } from '../../util/utils.js';
 import ProductManager from '../../manager/ProductManager.js';
 
 
-const manager = new ProductManager(__dirname+ '../../data/Products.json');
+const manager = new ProductManager(__dirname + '../../data/Products.json');
 const router = Router();
 
 
@@ -54,6 +54,13 @@ router.get('/:pid', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
+        const pr = JSON.stringify(req.body)
+        if (pr.length <= 2) {
+            return res.status(401).json({
+                message: "Error, Enter data for body",
+                error: "no data found by body"
+            });
+        }
         const product = req.body;
         if (!(product.title && product.description && product.code && product.price && product.stock && product.category) || req.body.id) {
             return res.status(400).json({
@@ -96,14 +103,15 @@ router.put('/:pid', async (req, res) => {
 
 });
 
-router.delete('/:pid', async (req,res) => {
-    if (!(+req.params.pid)) {
+router.delete('/:pid', async (req, res) => {
+    const product = await manager.getProductById(+req.params.pid);
+    if (!(product)) {
         return res.status(400).json({
             message: `Bad Request, Product with id ${req.params.pid} not Found`
         });
     }
 
-    const deletedProduct = await manager.deleteProduct(+req.params.pid);    
+    const deletedProduct = await manager.deleteProduct(+req.params.pid);
     res.status(200).json({
         message: `Product successfully removed`,
         data: deletedProduct

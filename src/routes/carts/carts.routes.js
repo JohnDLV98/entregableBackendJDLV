@@ -58,11 +58,10 @@ router.post('/:cid/product/:pid', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    try {          
-        
-         const pr = JSON.stringify(req.body)
-         console.log(pr)
-        console.log(pr.length) 
+    try {
+        const pr = JSON.stringify(req.body)
+        console.log(pr)
+        console.log(pr.length)
         if (pr.length > 2) {
             return res.status(401).json({
                 message: "Error, Unauthorized, it is restricted to enter  attributes",
