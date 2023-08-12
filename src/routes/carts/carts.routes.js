@@ -9,7 +9,6 @@ const managerCarts = new CartManager(__dirname + '../../data/Carts.json');
 
 const router = Router();
 
-
 router.get('/:cid', async (req, res) => {
     try {
         const getCartId = await managerCarts.getCartById(+req.params.cid);
@@ -59,10 +58,8 @@ router.post('/:cid/product/:pid', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const pr = JSON.stringify(req.body)
-        console.log(pr)
-        console.log(pr.length)
-        if (pr.length > 2) {
+        const counterStringBody = JSON.stringify(req.body)
+        if (counterStringBody.length > 2) {
             return res.status(401).json({
                 message: "Error, Unauthorized, it is restricted to enter  attributes",
                 error: "params entered by unauthorized person"

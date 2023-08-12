@@ -12,8 +12,9 @@ router.get('/', async (req, res) => {
     try {
         const products = await manager.getProducts();
         const { limit } = req.query;
-        if (!req.query.limit) {
-            res.status(200).json({
+        console.log(limit)
+        if (!limit) {
+            return res.status(200).json({
                 message: "Success, All The Products",
                 data: products
             });
@@ -24,8 +25,8 @@ router.get('/', async (req, res) => {
             });
         }
 
-        const limitProducts = products.slice(0, +limit);
-        res.status(200).json({
+        const limitProducts = products.slice(0, +limit);        
+        return res.status(200).json({
             message: `Success, Limit of ${limit} Products Found`,
             data: limitProducts
         });
@@ -54,8 +55,8 @@ router.get('/:pid', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const pr = JSON.stringify(req.body)
-        if (pr.length <= 2) {
+        const counterStringBody = JSON.stringify(req.body)
+        if (counterStringBody.length <= 2) {
             return res.status(401).json({
                 message: "Error, Enter data for body",
                 error: "no data found by body"
@@ -104,14 +105,14 @@ router.put('/:pid', async (req, res) => {
 });
 
 router.delete('/:pid', async (req, res) => {
-    const product = await manager.getProductById(+req.params.pid);
+    const product = await manager.getProductById(req.params.pid);
     if (!(product)) {
         return res.status(400).json({
             message: `Bad Request, Product with id ${req.params.pid} not Found`
         });
     }
 
-    const deletedProduct = await manager.deleteProduct(+req.params.pid);
+    const deletedProduct = await manager.deleteProduct(req.params.pid);
     res.status(200).json({
         message: `Product successfully removed`,
         data: deletedProduct

@@ -110,5 +110,15 @@
 		"code": "abc123",
 		"stock": "25",
 		"category": "comida"
+	},
+	{
+		"id": 13,
+		"title": "Hamburguesa Doble Carne",
+		"description": "Pan al vapor, salsas, ripio, vegetales, dos carnes de hamburguesa, 3 quesos, 3 tocinetas",
+		"price": "19000",
+		"thumbnail": "Sin imagen",
+		"code": "10012011",
+		"stock": "14",
+		"category": "Comida"
 	}
 ]
