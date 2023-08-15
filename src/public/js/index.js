@@ -9,8 +9,6 @@ const price  = document.getElementById('price');
 const stock  = document.getElementById('stock');
 const category  = document.getElementById('category');
 
-
-
 frmProduct.onsubmit = (e) => {
     e.preventDefault();
     const newProduct = {
@@ -23,8 +21,7 @@ frmProduct.onsubmit = (e) => {
         category: category.value
     }
     console.log(`desde cliente ${newProduct}`);
-    socketClient.emit("postProduct", newProduct);
-       
+    socketClient.emit("postProduct", newProduct);       
 }
 
 
