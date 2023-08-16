@@ -1,20 +1,7 @@
 <div>
     <h2>All Products by Handlebars!</h2>
     <h3>{{this.title}}</h3>
-
-    <div>
-        <h2>Add Product</h2>
-        <form id="prodsForm">
-            Title: <input type="text" name="title" id="title" required>
-            Description: <input type="text" name="description" id="description" required>
-            Code: <input type="text" name="code" id="code" required>
-            Thumbnail: <input type="text" name="thumbnail" id="thumbnail">
-            Price: <input type="number" name="price" id="price" required>
-            Stock: <input type="number" name="stock" id="stock" required>
-            Category: <input type="text" name="category" id="category" required>
-            <input type="submit" value="Send">
-        </form>
-    </div>
+    
     <br>
     <div>
         <table border='4'>
@@ -50,7 +37,6 @@
                         {{else}}
                         <td>Sin Categoria</td>
                         {{/if}}
-                        <td><input type="submit" value="DELETE"></td>
                     </form>
                 </tr>
                 {{/each}}

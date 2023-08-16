@@ -120,5 +120,15 @@
 		"code": "10012011",
 		"stock": "14",
 		"category": "Comida"
+	},
+	{
+		"id": 14,
+		"title": "hamburguesa pollo",
+		"description": "pollo pan",
+		"code": "12334455",
+		"thumbnail": "sdads",
+		"price": 7,
+		"stock": 2,
+		"category": "asd"
 	}
 ]

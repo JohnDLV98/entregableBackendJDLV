@@ -3,8 +3,9 @@ import handlebars from 'express-handlebars';
 import { __dirname } from './util/utils.js';
 import { Server } from 'socket.io';
 import apiRoutes from './routes/app.routers.js';
-import viewsRoutes from './routes/views.routes.js'
+import ProductManager from './manager/ProductManager.js'
 
+const manager = new ProductManager(__dirname + '../../data/Products.json');
 const PORT = 8080;
 const app = express();
 
@@ -34,7 +35,15 @@ socketServer.on('connection', (socket) => {
         console.log('Cliente desconectado', socket.id);
     })
     socket.on('postProduct', async (newProduct) => {
-        console.log(`recibido por app.js ${newProduct}`);
-        
+        try {
+           
+            const addProduct = await manager.addProduct(newProduct)
+            console.log(`recibido por app.js ${{ addProduct }}`)            
+            socket.emit("postProductTable", addProduct)
+        } catch (error) {
+            console.log(`ERROR CATCH POST_PRODUCT: ${error}`)
+        }
+
+
     })
 })
