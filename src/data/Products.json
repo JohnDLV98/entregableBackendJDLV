@@ -1,33 +1,5 @@
 [
 	{
-		"id": 1,
-		"title": "pruebahamburguesa",
-		"description": "Este es un producto prueba",
-		"price": 200,
-		"thumbnail": "Sin imagen",
-		"code": "abc123",
-		"stock": 25,
-		"category": "comida"
-	},
-	{
-		"id": 2,
-		"title": "Producto modificado",
-		"description": "Este es un producto prueba modificado",
-		"price": 200,
-		"thumbnail": "Sin imagen",
-		"code": "abc123",
-		"stock": 25
-	},
-	{
-		"id": 3,
-		"title": "Producto 3",
-		"description": "Este es un producto prueba",
-		"price": 200,
-		"thumbnail": "Sin imagen",
-		"code": "abc123",
-		"stock": 25
-	},
-	{
 		"id": 4,
 		"title": "Producto 4",
 		"description": "Este es un producto prueba",
@@ -46,35 +18,8 @@
 		"stock": 25
 	},
 	{
-		"id": 6,
-		"title": "Producto 6",
-		"description": "Este es un producto prueba",
-		"price": 200,
-		"thumbnail": "Sin imagen",
-		"code": "abc123",
-		"stock": 25
-	},
-	{
 		"id": 7,
 		"title": "Producto 7",
-		"description": "Este es un producto prueba",
-		"price": 200,
-		"thumbnail": "Sin imagen",
-		"code": "abc123",
-		"stock": 25
-	},
-	{
-		"id": 8,
-		"title": "Producto 8",
-		"description": "Este es un producto prueba",
-		"price": 200,
-		"thumbnail": "Sin imagen",
-		"code": "abc123",
-		"stock": 25
-	},
-	{
-		"id": 9,
-		"title": "Producto 9",
 		"description": "Este es un producto prueba",
 		"price": 200,
 		"thumbnail": "Sin imagen",
@@ -93,42 +38,12 @@
 	},
 	{
 		"id": 11,
-		"title": "Producto 10",
-		"description": "Este es un producto prueba",
-		"price": "200",
-		"thumbnail": "Sin imagen",
-		"code": "abc123",
-		"stock": "25",
-		"category": "comida"
-	},
-	{
-		"id": 12,
-		"title": "Producto 10",
-		"description": "Este es un producto prueba",
-		"price": "200",
-		"thumbnail": "Sin imagen",
-		"code": "abc123",
-		"stock": "25",
-		"category": "comida"
-	},
-	{
-		"id": 13,
-		"title": "Hamburguesa Doble Carne",
-		"description": "Pan al vapor, salsas, ripio, vegetales, dos carnes de hamburguesa, 3 quesos, 3 tocinetas",
-		"price": "19000",
-		"thumbnail": "Sin imagen",
-		"code": "10012011",
-		"stock": "14",
-		"category": "Comida"
-	},
-	{
-		"id": 14,
-		"title": "hamburguesa pollo",
-		"description": "pollo pan",
-		"code": "12334455",
-		"thumbnail": "sdads",
-		"price": 7,
-		"stock": 2,
-		"category": "asd"
+		"title": "jkhhjh",
+		"description": "hgjjhghj",
+		"code": "kjhkhjkjh",
+		"thumbnail": "klñlkñlk",
+		"price": 2,
+		"stock": 3,
+		"category": "ghvhghj"
 	}
 ]

@@ -9,9 +9,11 @@ const price = document.getElementById('price');
 const stock = document.getElementById('stock');
 const category = document.getElementById('category');
 const allProductsTable = document.getElementById('allProductsTable')
+const getId = document.getElementById('getId')
+const product = document.getElementById('product')
+const frmColProduct = document.getElementById('frmColProduct')
 
-frmProduct.onsubmit = (e) => {
-    e.preventDefault();
+frmProduct.onsubmit = (e) => {    
     const newProduct = {
         title: title.value,
         description: description.value,
@@ -21,37 +23,70 @@ frmProduct.onsubmit = (e) => {
         stock: +stock.value,
         category: category.value
     }
-
     socketClient.emit("postProduct", newProduct);
-    
-    title.value = '';
-    description.value = '';
-    code.value = '';
-    thumbnail.value = '';
-    price.value = '';
-    stock.value = '';
-    category.value = '';
+    e.preventDefault();
+    // document.getElementById('frmProducts').reset()
 }
 
-socketClient.on('postProductTable', (allProducts) => {
-    try {
-        const newRow = `
-                    <tr>
-                        <td>${allProducts.id}</td>
-                        <td>${allProducts.title}</td>
-                        <td>${allProducts.description}</td>
-                        <td>$ ${allProducts.price}</td>
-                        <td>${allProducts.thumbnail || 'thumbnail not found'}</td>
-                        <td>${allProducts.code}</td>
-                        <td>${allProducts.stock}</td>                        
-                        <td>${allProducts.category}</td>   
-                        <td><input type="submit" value="DELETE"></td>
-                    </tr>
-                    `
-        allProductsTable.innerHTML += newRow;
-    } catch (error) {
-        console.log(`ERROR INDEX.JS POST_PRODUCT_TABLE ${error}`);
-    }
+socketClient.on('postProductTable', async (prod) => {
+
+    const newRow = `
+        <tr id="product">
+        <!--Columna-->
+                <td>${prod.id}</td>
+                <td>${prod.title}</td>
+                <td>${prod.description}</td>
+                <td>$ ${prod.price}</td>
+                <td>${prod.thumbnail || 'thumbnail not found'}</td>
+                <td>${prod.code}</td>
+                <td>${prod.stock}</td>                        
+                <td>${prod.category}</td>   
+                <td><button id="delete">DELETE</button></td>
+        </tr>
+        `
+    
+    allProductsTable.innerHTML += newRow;
+
 })
+
+document.getElementById("allProductsTable").onclick = (e) => {
+    console.log("BOTON ESTRIPADO");
+    const target = e.target
+    const parentElement = target.parentElement.parentElement
+    // console.log(parentElement);
+    // console.log(target);
+    // console.log(parentElement.children[0].innerHTML);
+    // console.log(target.id === "delete");
+    if (target.id === "delete") {
+        target.parentElement.parentElement.remove();
+        e.preventDefault();
+        socketClient.emit('deleteProduct', parentElement.children[0].innerHTML)
+    }
+};
+
+
+socketClient.on('newArrProducts', async (products) => {
+    const newRow = products.map(prod => {
+        return `
+        <tr id="product">
+        <!--Columna-->
+                <td>${prod.id}</td>
+                <td>${prod.title}</td>
+                <td>${prod.description}</td>
+                <td>$ ${prod.price}</td>
+                <td>${prod.thumbnail || 'thumbnail not found'}</td>
+                <td>${prod.code}</td>
+                <td>${prod.stock}</td>                        
+                <td>${prod.category}</td>   
+                <td><button id="delete">DELETE</button></td>
+        </tr>
+        `
+    }).join(' ')
+
+    allProductsTable.innerHTML = newRow;
+
+})
+
+
 
 

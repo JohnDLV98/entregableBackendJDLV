@@ -29,21 +29,21 @@ const httpServer = app.listen(PORT, () => {
 
 const socketServer = new Server(httpServer);
 
-socketServer.on('connection', (socket) => {
+socketServer.on('connection', async (socket) => {
     console.log('cliente conectado', socket.id);
     socket.on('disconnect', () => {
         console.log('Cliente desconectado', socket.id);
     })
+
     socket.on('postProduct', async (newProduct) => {
-        try {
-           
-            const addProduct = await manager.addProduct(newProduct)
-            console.log(`recibido por app.js ${{ addProduct }}`)            
-            socket.emit("postProductTable", addProduct)
-        } catch (error) {
-            console.log(`ERROR CATCH POST_PRODUCT: ${error}`)
-        }
+        const prod = await manager.addProduct(newProduct)
+        const allProducts = await manager.getProducts()
+        socketServer.emit('postProductTable', prod)
+    })
 
-
+    socket.on('deleteProduct', async (content) => {        
+        await manager.deleteProduct(+content)
+        const products = await manager.getProducts()
+        socketServer.emit('newArrProducts', products)
     })
 })
