@@ -20,9 +20,9 @@ frmProduct.onsubmit = (e) => {
         stock: +stock.value,
         category: category.value
     }
-    console.log(`desde cliente ${newProduct}`);
+    
     socketClient.emit("postProduct", newProduct);       
 }
 
-
+console.log(`desde index.js ${newProduct}`);
 

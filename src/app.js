@@ -34,7 +34,7 @@ socketServer.on('connection', (socket) => {
         console.log('Cliente desconectado', socket.id);
     })
     socket.on('postProduct', async (newProduct) => {
-        console.log(`recibido por index.js ${newProduct}`);
+        console.log(`recibido por app.js ${newProduct}`);
         
     })
 })
