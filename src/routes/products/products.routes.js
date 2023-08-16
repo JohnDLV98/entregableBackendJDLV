@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
             });
         }
 
-        const limitProducts = products.slice(0, +limit);        
+        const limitProducts = products.slice(0, +limit);
         return res.status(200).json({
             message: `Success, Limit of ${limit} Products Found`,
             data: limitProducts

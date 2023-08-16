@@ -13,7 +13,7 @@ const getId = document.getElementById('getId')
 const product = document.getElementById('product')
 const frmColProduct = document.getElementById('frmColProduct')
 
-frmProduct.onsubmit = (e) => {    
+frmProduct.onsubmit = (e) => {
     const newProduct = {
         title: title.value,
         description: description.value,
@@ -44,7 +44,7 @@ socketClient.on('postProductTable', async (prod) => {
                 <td><button id="delete">DELETE</button></td>
         </tr>
         `
-    
+
     allProductsTable.innerHTML += newRow;
 
 })

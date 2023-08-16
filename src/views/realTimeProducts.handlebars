@@ -44,20 +44,20 @@
                 <!--Fila-->
                 {{#each list}}
                 <tr id="product">
-                    <!--Columna-->                    
-                        <td>{{this.id}}</td>
-                        <td>{{this.title}}</td>
-                        <td>{{this.description}}</td>
-                        <td>$ {{this.price}}</td>
-                        <td>{{this.thumbnail}}</td>
-                        <td>{{this.code}}</td>
-                        <td>{{this.stock}}</td>
-                        {{#if this.category}}
-                        <td>{{this.category}}</td>
-                        {{else}}
-                        <td>Sin Categoria</td>
-                        {{/if}}
-                        <td><button id="delete">DELETE</button></td>                    
+                    <!--Columna-->
+                    <td>{{this.id}}</td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.description}}</td>
+                    <td>$ {{this.price}}</td>
+                    <td>{{this.thumbnail}}</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.stock}}</td>
+                    {{#if this.category}}
+                    <td>{{this.category}}</td>
+                    {{else}}
+                    <td>Sin Categoria</td>
+                    {{/if}}
+                    <td><button id="delete">DELETE</button></td>
                 </tr>
                 {{/each}}
             </tbody>

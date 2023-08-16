@@ -37,11 +37,10 @@ socketServer.on('connection', async (socket) => {
 
     socket.on('postProduct', async (newProduct) => {
         const prod = await manager.addProduct(newProduct)
-        const allProducts = await manager.getProducts()
         socketServer.emit('postProductTable', prod)
     })
 
-    socket.on('deleteProduct', async (content) => {        
+    socket.on('deleteProduct', async (content) => {
         await manager.deleteProduct(+content)
         const products = await manager.getProducts()
         socketServer.emit('newArrProducts', products)
