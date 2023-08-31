@@ -45,5 +45,25 @@
 		"price": 2,
 		"stock": 3,
 		"category": "ghvhghj"
+	},
+	{
+		"id": 12,
+		"title": "adasd",
+		"description": "asdasd",
+		"code": "asdasd",
+		"thumbnail": "asdasd",
+		"price": 6,
+		"stock": 5,
+		"category": "ultimo"
+	},
+	{
+		"id": 13,
+		"title": "asdasd",
+		"description": "asdasd",
+		"code": "asdasd",
+		"thumbnail": "asdasd",
+		"price": 4,
+		"stock": 4,
+		"category": "456"
 	}
 ]
