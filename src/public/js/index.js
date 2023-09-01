@@ -14,23 +14,23 @@ const product = document.getElementById('product')
 const frmColProduct = document.getElementById('frmColProduct')
 
 frmProduct.onsubmit = (e) => {
-    const newProduct = {
-        title: title.value,
-        description: description.value,
-        code: code.value,
-        thumbnail: thumbnail.value,
-        price: +price.value,
-        stock: +stock.value,
-        category: category.value
-    }
-    socketClient.emit("postProduct", newProduct);
-    e.preventDefault();
-    // document.getElementById('frmProducts').reset()
+  const newProduct = {
+    title: title.value,
+    description: description.value,
+    code: code.value,
+    thumbnail: thumbnail.value,
+    price: +price.value,
+    stock: +stock.value,
+    category: category.value
+  }
+  socketClient.emit("postProduct", newProduct);
+  e.preventDefault();
+  // document.getElementById('frmProducts').reset()
 }
 
 socketClient.on('postProductTable', async (prod) => {
 
-    const newRow = `
+  const newRow = `
         <tr id="product">
         <!--Columna-->
                 <td>${prod.id}</td>
@@ -45,29 +45,29 @@ socketClient.on('postProductTable', async (prod) => {
         </tr>
         `
 
-    allProductsTable.innerHTML += newRow;
+  allProductsTable.innerHTML += newRow;
 
 })
 
 document.getElementById("allProductsTable").onclick = (e) => {
-    console.log("BOTON ESTRIPADO");
-    const target = e.target
-    const parentElement = target.parentElement.parentElement
-    // console.log(parentElement);
-    // console.log(target);
-    // console.log(parentElement.children[0].innerHTML);
-    // console.log(target.id === "delete");
-    if (target.id === "delete") {
-        target.parentElement.parentElement.remove();
-        e.preventDefault();
-        socketClient.emit('deleteProduct', parentElement.children[0].innerHTML)
-    }
+  console.log("BOTON ESTRIPADO");
+  const target = e.target
+  const parentElement = target.parentElement.parentElement
+  // console.log(parentElement);
+  // console.log(target);
+  // console.log(parentElement.children[0].innerHTML);
+  // console.log(target.id === "delete");
+  if (target.id === "delete") {
+    target.parentElement.parentElement.remove();
+    e.preventDefault();
+    socketClient.emit('deleteProduct', parentElement.children[0].innerHTML)
+  }
 };
 
 
 socketClient.on('newArrProducts', async (products) => {
-    const newRow = products.map(prod => {
-        return `
+  const newRow = products.map(prod => {
+    return `
         <tr id="product">
         <!--Columna-->
                 <td>${prod.id}</td>
@@ -81,9 +81,9 @@ socketClient.on('newArrProducts', async (products) => {
                 <td><button id="delete">DELETE</button></td>
         </tr>
         `
-    }).join(' ')
+  }).join(' ')
 
-    allProductsTable.innerHTML = newRow;
+  allProductsTable.innerHTML = newRow;
 
 })
 
