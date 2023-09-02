@@ -5,7 +5,8 @@ import { Server } from 'socket.io';
 import apiRoutes from './routes/app.routers.js';
 import ProductManager from './dao/manager/product/ProductManagerFS.js'
 import './dao/db/dbConfig.js' // cuando se ejecuta app se ejecuta a su vez dbconfig
-
+import { productManagerMongo } from './dao/manager/product/ProductManagerMongo.js';
+import { messageManagerMongo } from './dao/manager/message/MessageManagerMongo.js';
 
 const manager = new ProductManager(__dirname + '../../data/Products.json');
 const PORT = 8080;
@@ -39,27 +40,28 @@ socketServer.on('connection', async (socket) => {
   })
 
   socket.on('postProduct', async (newProduct) => {
-    const prod = await manager.addProduct(newProduct)
+    const prod = await productManagerMongo.createOne(newProduct)
     socketServer.emit('postProductTable', prod)
   })
 
   socket.on('deleteProduct', async (content) => {
-    await manager.deleteProduct(+content)
-    const products = await manager.getProducts()
+    await productManagerMongo.deleteOne(content)
+    const products = await productManagerMongo.findAll()
     socketServer.emit('newArrProducts', products)
   })
 
-  socket.on('login', (user) => {
+  socket.on('login', async (user) => {
     console.log(user)
-    socket.emit('message-logs', messages);
+    socket.emit('message-logs', await messageManagerMongo.findAll());
     socket.emit('welcome', user);
     socket.broadcast.emit('new-user', user);
 
   });
 
-  socket.on('message', (data) => {
-    messages.push(data);
-    console.log(data)
+  socket.on('message', async (data) => {
+    const newMessage = await messageManagerMongo.createOne(data)    
+    const messages = await messageManagerMongo.findAll()
+    console.log( newMessage )
     socketServer.emit('message-logs', messages);
   })
 })

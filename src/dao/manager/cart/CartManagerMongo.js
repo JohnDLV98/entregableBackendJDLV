@@ -13,46 +13,46 @@ class CartManagerMongo {
     }
   }
 
-  async createOne(obj) {
+  async createOne() {
     try {
-      const carts = await cartModel.create(obj)
+      const carts = await cartModel.create({})
       return carts
     } catch (error) {
       return error
     }
   }
 
-  async createOneProduct(idCart, idProduct) {
-    try {
-        const cart = await this.findById(idCart); 
-        const product = await productManagerMongo.findById(idProduct)
-        if (cart && product) {
+//   async createOneProduct(idCart, idProduct) {
+//     try {
+//         const cart = await this.findById(idCart); 
+//         const product = await productManagerMongo.findById(idProduct)
+//         if (cart && product) {
           
-        } else {
+//         } else {
           
-        } 
-        const productIndex = cart.products.findIndex(prod => prod.product === idProduct);
-        if (productIndex === -1) {
-            cart.products.push({
-                product: idProduct,
-                quantity: 1
-            })
-        }
-        else {
-            cart.products[productIndex].quantity++
-        }
-        const cartIndex = carts.findIndex(item => item.id === cart.id)
-        carts[cartIndex] = cart
-        const cartString = await JSON.stringify(carts, null, "\t");
-        await this.writeFile(cartString);
+//         } 
+//         const productIndex = cart.products.findIndex(prod => prod.product === idProduct);
+//         if (productIndex === -1) {
+//             cart.products.push({
+//                 product: idProduct,
+//                 quantity: 1
+//             })
+//         }
+//         else {
+//             cart.products[productIndex].quantity++
+//         }
+//         const cartIndex = carts.findIndex(item => item.id === cart.id)
+//         carts[cartIndex] = cart
+//         const cartString = await JSON.stringify(carts, null, "\t");
+//         await this.writeFile(cartString);
 
-        return cart;
+//         return cart;
 
 
-    } catch (error) {
-        throw new Error(error);
-    }
-}
+//     } catch (error) {
+//         throw new Error(error);
+//     }
+// }
 
   async findById(id) {
     try {

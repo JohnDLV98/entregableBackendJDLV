@@ -2,14 +2,11 @@ import mongoose from "mongoose";
 
 const messagesSchema = new mongoose.Schema({
     user: {
-        type: String,
-        require: true,
-        unique: true
+        type: String            
     },
     message: {
-        type: String,
-        require: true
+        type: String
     }
 })
 
-export const productsModel = mongoose.model('Products', messagesSchema)
+export const messagesModel = mongoose.model('messages', messagesSchema)

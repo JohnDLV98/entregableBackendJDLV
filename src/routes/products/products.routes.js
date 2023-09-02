@@ -3,7 +3,7 @@ import { __dirname } from '../../util/utils.js';
 import ProductManager from '../../dao/manager/product/ProductManagerFS.js';
 import { productManagerMongo } from '../../dao/manager/product/ProductManagerMongo.js';
 
-const manager = new ProductManager(__dirname + '../../data/Products.json');
+// const manager = new ProductManager(__dirname + '../../data/Products.json');
 const router = Router();
 
 

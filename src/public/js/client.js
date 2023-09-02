@@ -103,4 +103,3 @@ socket.on('message-logs', (data) => {
   }));
   messagesBox.innerHTML = html;
 });
-
