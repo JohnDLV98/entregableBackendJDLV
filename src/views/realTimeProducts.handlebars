@@ -1,70 +1,70 @@
 <div>
-    <h2>All Products by Handlebars - socket.io!</h2>
-    <h3>{{this.title}}</h3>
+  <h2>All Products by Handlebars - socket.io!</h2>
+  <h3>{{this.title}}</h3>
 
-    <div>
-        <h2>Add Product</h2>
-        <form id="frmProducts">
+  <div>
+    <h2>Add Product</h2>
+    <form id="frmProducts">
 
-            Title: <input type="text" name="title" id="title" required>
+      Title: <input type="text" name="title" id="title" required>
 
-            Description: <input type="text" name="description" id="description" required>
+      Description: <input type="text" name="description" id="description" required>
 
-            Code: <input type="text" name="code" id="code" required>
+      Code: <input type="text" name="code" id="code" required>
 
-            Thumbnail: <input type="text" name="thumbnail" id="thumbnail">
+      Thumbnail: <input type="text" name="thumbnail" id="thumbnail">
 
-            Price: <input type="number" name="price" id="price" required>
+      Price: <input type="number" name="price" id="price" required>
 
-            Stock: <input type="number" name="stock" id="stock" required>
+      Stock: <input type="number" name="stock" id="stock" required>
 
-            Category: <input type="text" name="category" id="category" required>
+      Category: <input type="text" name="category" id="category" required>
 
-            <input type="submit" value="Send">
-        </form>
-    </div>
-    <br>
-    <div>
-        <table border='4'>
-            <!--Cabecera de la tabla-->
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>title</th>
-                    <th>description</th>
-                    <th>price</th>
-                    <th>thumbnail</th>
-                    <th>code</th>
-                    <th>stock</th>
-                    <th>category</th>
-                </tr>
-            </thead>
-            <!--Cuerpo de la tabla-->
-            <tbody id='allProductsTable'>
-                <!--Fila-->
-                {{#each list}}
-                <tr id="product">
-                    <!--Columna-->
-                    <td>{{this.id}}</td>
-                    <td>{{this.title}}</td>
-                    <td>{{this.description}}</td>
-                    <td>$ {{this.price}}</td>
-                    <td>{{this.thumbnail}}</td>
-                    <td>{{this.code}}</td>
-                    <td>{{this.stock}}</td>
-                    {{#if this.category}}
-                    <td>{{this.category}}</td>
-                    {{else}}
-                    <td>Sin Categoria</td>
-                    {{/if}}
-                    <td><button id="delete">DELETE</button></td>
-                </tr>
-                {{/each}}
-            </tbody>
+      <input type="submit" value="Send">
+    </form>
+  </div>
+  <br>
+  <div>
+    <table border='4'>
+      <!--Cabecera de la tabla-->
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>title</th>
+          <th>description</th>
+          <th>price</th>
+          <th>thumbnail</th>
+          <th>code</th>
+          <th>stock</th>
+          <th>category</th>
+        </tr>
+      </thead>
+      <!--Cuerpo de la tabla-->
+      <tbody id='allProductsTable'>
+        <!--Fila-->
+        {{#each list}}
+        <tr id="product">
+          <!--Columna-->
+          <td>{{this._id}}</td>
+          <td>{{this.title}}</td>
+          <td>{{this.description}}</td>
+          <td>$ {{this.price}}</td>
+          <td>{{this.thumbnail}}</td>
+          <td>{{this.code}}</td>
+          <td>{{this.stock}}</td>
+          {{#if this.category}}
+          <td>{{this.category}}</td>
+          {{else}}
+          <td>Sin Categoria</td>
+          {{/if}}
+          <td><button id="delete">DELETE</button></td>
+        </tr>
+        {{/each}}
+      </tbody>
 
-        </table>
+    </table>
 
-    </div>
+  </div>
 
 </div>
 

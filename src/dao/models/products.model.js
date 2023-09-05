@@ -13,23 +13,25 @@ const productsSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    thumbnail: {
-        type: String,
-        require: true
-    },
     price: {
         type: Number,
         require: true
     },
+    status: {
+        type: Boolean,
+        default: true
+    },
     stock: {
         type: Number,
         require: true,
-        default: 0
     },
     category: {
         type: String,
         require: true
-    }   
+    },
+    thumbnail: [{
+        type: mongoose.Schema.Types.Array
+    }] 
 })
 
 export const productsModel = mongoose.model('Products', productsSchema)

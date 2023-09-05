@@ -33,7 +33,7 @@ socketClient.on('postProductTable', async (prod) => {
   const newRow = `
         <tr id="product">
         <!--Columna-->
-                <td>${prod.id}</td>
+                <td>${prod._id}</td>
                 <td>${prod.title}</td>
                 <td>${prod.description}</td>
                 <td>$ ${prod.price}</td>
@@ -70,7 +70,7 @@ socketClient.on('newArrProducts', async (products) => {
     return `
         <tr id="product">
         <!--Columna-->
-                <td>${prod.id}</td>
+                <td>${prod._id}</td>
                 <td>${prod.title}</td>
                 <td>${prod.description}</td>
                 <td>$ ${prod.price}</td>

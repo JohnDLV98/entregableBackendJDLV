@@ -15,7 +15,7 @@ router.get('/home', async (req, res) => {
   const products = await productManagerMongo.findAll();
   const data = {
     title: "productos desde views router",
-    list: products
+    list: products.map(product => product.toJSON())
   }
   console.log(data);
   res.render('home', data)  
@@ -25,7 +25,7 @@ router.get('/realtimeproducts', async (req, res) => {
   const products = await productManagerMongo.findAll();
   const data = {
     title: "productos desde views router real time products",
-    list: products
+    list: products.map(product => product.toJSON())
   }
   console.log(data);
   res.render('realTimeProducts', data)
