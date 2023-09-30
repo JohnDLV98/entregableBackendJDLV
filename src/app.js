@@ -30,7 +30,6 @@ const httpServer = app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
 });
 
-const messages = [];
 const socketServer = new Server(httpServer);
 
 socketServer.on('connection', async (socket) => {

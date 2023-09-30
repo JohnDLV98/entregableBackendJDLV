@@ -4,8 +4,7 @@ import { __dirname } from '../util/utils.js';
 import { productManagerMongo } from '../dao/manager/product/ProductManagerMongo.js';
 
 const router = Router();
-const managerProducts = new productManager(__dirname + '../../data/Products.json')
-
+// const managerProducts = new productManager(__dirname + '../../data/Products.json')
 
 router.get('/', async (req, res) => {
   res.render('index', {});
