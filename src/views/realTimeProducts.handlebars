@@ -1,3 +1,7 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
 <div>
   <h2>All Products by Handlebars - socket.io!</h2>
   <h3>{{this.title}}</h3>
@@ -42,7 +46,7 @@
       <!--Cuerpo de la tabla-->
       <tbody id='allProductsTable'>
         <!--Fila-->
-        {{#each list}}
+        {{#each payload}}
         <tr id="product">
           <!--Columna-->
           <td>{{this._id}}</td>

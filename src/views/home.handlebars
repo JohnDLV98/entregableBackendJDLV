@@ -1,8 +1,24 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <script defer src="https://kit.fontawesome.com/4cc6ed8424.js" crossorigin="anonymous"></script>
+</head>
+
+  <nav>
+    <div class="nav-wrapper container">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href=""><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #c1d6d4;"></i></a></li>
+      </ul>
+    </div>
+  </nav>
+
 <div>
-  <h2>All Products by Handlebars!</h2>
+  <h2>Products by Handlebars!</h2>
   <h3>{{this.title}}</h3>
 
   <br>
+
+  {{#if this.isValid}}
   <div>
     <table border='4'>
       <!--Cabecera de la tabla-->
@@ -15,13 +31,13 @@
           <th>thumbnail</th>
           <th>code</th>
           <th>stock</th>
-          <th>category</th>
+          <th>category</th>          
         </tr>
       </thead>
       <!--Cuerpo de la tabla-->
       <tbody>
         <!--Fila-->
-        {{#each list}}
+        {{#each this.infoData.payload}}
         <tr>
           <!--Columna-->
           <form id="allProducts">
@@ -37,13 +53,27 @@
             {{else}}
             <td>Sin Categoria</td>
             {{/if}}
+            <td><a href=""><i class="fa-solid fa-cart-shopping fa-lg" style="color: #00796b;"></i></a></td>
           </form>
         </tr>
         {{/each}}
       </tbody>
-
     </table>
-
   </div>
+  <br>
+  <div>
+    {{#if this.infoData.hasPrevPage}}
+        <a href="/api/viewsProducts{{this.infoData.prevLink}}"><< Anterior</a>
+    {{/if}}
+    &nbsp;
+    {{this.infoData.page}}
+    &nbsp;
+     {{#if this.infoData.hasNextPage}}
+        <a href="/api/viewsProducts{{this.infoData.nextLink}}">Siguiente >></a>
+    {{/if}} 
+</div>
+  {{else}}
+  <h1>There are no products to display.</h1>
+  {{/if}}
 
 </div>

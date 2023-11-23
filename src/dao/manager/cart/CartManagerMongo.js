@@ -23,22 +23,25 @@ class CartManagerMongo {
   }
 
   async addProductCart(cid, pid, newQuantity) {
+    
     try {
-      const cart = await this.findById(cid).populate('products.product').lean()
+      const cart = await cartModel.findById(cid)
       console.log(cart);
       const existingProduct = cart.products.find(
         (prod) => prod.product.toString() === pid)
-
+        
       if (!existingProduct) {
-        cart.products.push({ product: pid, quantity: newQuantity || 1 });
+        cart.products.push({ product: pid, quantity: +newQuantity || 1 });
       } else {
-        existingProduct.quantity += newQuantity || 1;
+        existingProduct.quantity += +newQuantity || 1;
       }
-
-      return await cart.save()
+      console.log(cart.products);
+      
+      return await cart.save();
+      
 
     } catch (error) {
-      return `Error by addProductCart ${error}`;
+      return error;
     }
   }
 
@@ -62,7 +65,7 @@ class CartManagerMongo {
 
   async findById(id) {
     try {
-      const cart = await cartModel.findById(id).populate("products.product")
+      const cart = await cartModel.findById(id).populate("products.product").lean();
       return cart
     } catch (error) {
       return error

@@ -1,0 +1,21 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<div>
+    <h2>Cart By handlebars</h2>
+    <h3>{{this.title}}</h3>
+    <p>{{this.info}}</p>
+<br>
+    {{#if this.isValid}}
+    <div>
+        <table border="5">
+            {{#each this.info}}
+            {{/each}}
+        </table>
+    </div>
+    {{else}}
+    <h2>The cart does not exist.</h2>
+    {{/if}}
+</div>

@@ -1,21 +1,26 @@
 import { productsModel } from '../../models/products.model.js'
-
+import { baseUrlProducts } from '../../../routes/carts/carts.routes.js'
 class ProductManagerMongo {
-
   async findAll(obj) {
-    const { limit = 10, page = 1, sort , ...query } = obj;
+    const { limit = 10, page = 1, sort, ...query } = obj
 
-    const options = { limit, page };    
- 
+    const options = { limit, page, lean: true }
+
     if (sort === 'asc') {
-      options.sort = { price: 1 };
+      options.sort = { price: 1 }
     }
     if (sort === 'desc') {
-      options.sort = { price: -1 };
+      options.sort = { price: -1 }
     }
 
+    const queryParameters = { ...query, limit, sort }
+
+    const queryString = Object.entries(queryParameters)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&')
+
     try {
-      const result = await productsModel.paginate(query, options);
+      const result = await productsModel.paginate(query, options)
       // console.log(result);
       const info = {
         count: result.totalDocs,
@@ -24,23 +29,22 @@ class ProductManagerMongo {
         prevPage: result.prevPage,
         nextPage: result.nextPage,
         page: result.page,
-        hasPrevPage: result.hasPrevPage, 
-        hasNextPage: result.hasNextPage,        
+        hasPrevPage: result.hasPrevPage,
+        hasNextPage: result.hasNextPage,
         prevLink: result.hasPrevPage
-        ? `http://localhost:8080/?page=${result.prevPage}`
-        : null,
+          ? `${baseUrl}?page=${result.prevPage}&${queryString}`
+          : null,
         nextLink: result.hasNextPage
-        ? `http://localhost:8080/?page=${result.nextPage}`
-        : null
-      };
-      return { info };
-
+          ? `${baseUrl}?page=${result.nextPage}&${queryString}`
+          : null,
+      }
+      return { info }
     } catch (error) {
-      return error;
+      return error
     }
   }
 
-// busca un producto desde su id desde la base de datos de mongo db atlas
+  // busca un producto desde su id desde la base de datos de mongo db atlas
   async findById(id) {
     try {
       const product = await productsModel.findById(id)
@@ -54,7 +58,6 @@ class ProductManagerMongo {
   //   return await Product.countDocuments(queryOptions);
   // }
 
-
   async createOne(obj) {
     try {
       const product = await productsModel.create(obj)
@@ -66,7 +69,10 @@ class ProductManagerMongo {
 
   async updateOne(id, data) {
     try {
-      const response = await productsModel.updateOne({ _id: id }, { $set: data })
+      const response = await productsModel.updateOne(
+        { _id: id },
+        { $set: data }
+      )
       return response
     } catch (error) {
       return error
